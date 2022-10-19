@@ -1,0 +1,43 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    @if (Model.game != null)
+    {
+        <p>Lucky numbers:</p>
+        <div>
+            @foreach (int number in Model.game.numbers)
+            {
+                <span>@number</span>
+            }
+        </div>
+        @if (Model.card != null)
+        {
+            <hr />
+            <p>Your card:</p>
+            <table>
+                @foreach (int[] row in Model.card.table)
+                {
+                    <tr>
+                        @foreach (int num in row)
+                        {
+                            @if (Array.Exists(Model.game.numbers, el => el == num))
+                            {
+                                <td><b>@num</b></td>
+                            }
+                            else
+                            {
+                                <td>@num</td>
+                            }
+                        }
+                    </tr>
+                }
+            </table>
+        <hr />
+        }
+    }
+    <p>Score: @Model.score</p>
+</div>

@@ -17,7 +17,6 @@ public class Game
             result[i] = availableNumbers[index];
             availableNumbers = availableNumbers.Where((_, id) => id != index).ToArray();
         }
-        Array.Sort(result);
         this.numbers = result;
     }
 }

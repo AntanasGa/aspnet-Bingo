@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using Bingo.Helpers;
 namespace Bingo.Models;
 
 public class Card
@@ -14,6 +17,7 @@ public class Card
         {
             table[i] = generateRow(ref availableNumbers);
         }
+        Array.Sort(table, new CardRowSort());
         this.table = table;
     }
 

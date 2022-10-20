@@ -16,3 +16,181 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.title {
+  font-size: 10rem;
+  text-align: center;
+  background: linear-gradient(7.5deg, #22d3ee 0%, #22d3ee 45%, #0891b2 50%, #22d3ee 50%, #fff 55%, #fff 60%, #cffafe 60%, #22d3ee 65%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: rotate(-7.5deg);
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 1));
+}
+
+.balls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.balls>.ball {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  margin: 0.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #06b6d4;
+  background: radial-gradient(at 50% 50%, #fff 2.5px, #22d3ee 15%, #0891b2 50%);
+  background-size: 150% 150%;
+  background-position-x: 90%;
+  background-position-y: 90%;
+  animation: 0.5s ballShine;
+  color: white;
+  font-weight: bolder;
+}
+
+.balls>.ball::before {
+  content: " ";
+  z-index: -1;
+  position: absolute;
+  bottom: -7px;
+  left: 8px;
+  width: 100%;
+  height: 50%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  animation: 0.5s ballShadow;
+  filter: blur(5px);
+}
+
+.ticket {
+  margin-top: 5rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background: #cffafe;
+}
+
+.ticket>.row {
+  display: flex;
+  flex-flow: row;
+}
+
+.ticket>.row>.num {
+  display: flex;
+  flex: 1 1 auto;
+  aspect-ratio: 1;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.65);
+  background-color: #22d3ee;
+}
+
+.ticket>.row>.num.matched {
+  animation: 0.5s numMatch;
+  font-weight: bolder;
+  background-color: #0891b2;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.65) inset;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.65) inset;
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.65) inset;
+}
+
+.score {
+  margin-top: 1rem;
+}
+
+.score span {
+  padding: 0.25rem 1rem;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  background-color: #06b6d4;
+  color: #fff;
+  background: linear-gradient(0deg, #818cf8 0%, #14b8a6 90%);
+}
+
+.score-box {
+  position: relative;
+  margin-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+.score-box > h3 {
+  position: absolute;
+  transform: rotate(-45deg) translate(-25%, -50%) scale(0.9);
+  right: 2rem;
+  bottom: 2rem;
+  animation: 2.5s scoreScale ease-in-out infinite;
+  background: linear-gradient(2deg, #a3e635 0%, #a3e635 30%, #4d7c0f 40%, #fde047 40%, #db2777 45%, #db2777 50%, #e11d48 50%, #a3e635 55%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 1));
+}
+
+@keyframes ballShine {
+  0% {
+    background-position-x: -10%;
+    background-position-y: 0%;
+  }
+
+  10% {
+    background-position-x: 40%;
+    background-position-y: 10%;
+  }
+
+  30% {
+    background-position-x: 70%;
+    background-position-y: 40%;
+  }
+
+  50% {
+    background-position-x: 80%;
+    background-position-y: 80%;
+  }
+
+  100% {
+    background-position-x: 90%;
+    background-position-y: 90%;
+  }
+}
+
+@keyframes ballShadow {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes numMatch {
+  from {
+    background-color: #22d3ee;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.65) inset;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.65) inset;
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.65) inset;
+  }
+  to {
+    background-color: #0891b2;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.65) inset;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.65) inset;
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.65) inset;
+  }
+}
+
+@keyframes scoreScale {
+  0% {
+    transform: rotate(-45deg)  translate(-25%, -50%) scale(0.9);
+  }
+  50% {
+    transform: rotate(-45deg)  translate(-25%, -50%) scale(1.3);
+  }
+  0% {
+    transform: rotate(-45deg)  translate(-25%, -50%) scale(0.9);
+  }
+}

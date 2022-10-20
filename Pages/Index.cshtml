@@ -5,39 +5,46 @@
 }
 
 <div>
+    <h1 class="title">BINGO</h1>
     @if (Model.game != null)
     {
-        <p>Lucky numbers:</p>
-        <div>
+        <h2>Pulled</h2>
+        <div class="balls">
             @foreach (int number in Model.game.numbers)
             {
-                <span>@number</span>
+                <span class="ball">@number</span>
             }
         </div>
         @if (Model.card != null)
         {
-            <hr />
-            <p>Your card:</p>
-            <table>
-                @foreach (int[] row in Model.card.table)
-                {
-                    <tr>
-                        @foreach (int num in row)
-                        {
-                            @if (Array.Exists(Model.game.numbers, el => el == num))
+            <div class="container">
+                <div class="ticket col-md-8 offset-md-2 gy-0">
+                    <h2>Bingo card</h2>
+                    <hr />
+                    @foreach (int[] row in Model.card.table)
+                    {
+                        <div class="row">
+                            @foreach (int num in row)
                             {
-                                <td><b>@num</b></td>
+                                @if (Array.Exists(Model.game.numbers, el => el == num))
+                                {
+                                    <div class="num matched">@num</div>
+                                }
+                                else
+                                {
+                                    <div class="num">@num</div>
+                                }
                             }
-                            else
-                            {
-                                <td>@num</td>
-                            }
-                        }
-                    </tr>
-                }
-            </table>
-        <hr />
+                        </div>
+                    }
+                <hr />
+                <h3 class="score">Score:<span>@Model.score</span></h3>
+                </div>
+            </div>
         }
     }
-    <p>Score: @Model.score</p>
+    <div class="container">
+        @* linking to the same page would most likely cause no reload to occure *@
+        <div class="col-3 offset-5 score-box"><button onclick="window.location.reload();" type="button" class="btn btn-lg btn-outline-dark">Play again</button></div>
+    </div>
 </div>
